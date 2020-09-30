@@ -5,7 +5,6 @@ function load(blueprintJSONPath) {
     group,
     // tests, 
   } = require(blueprintJSONPath);
-  // console.log(instructions, dissectGuide, tests);
   
   const registeredInstructions = loadInstructions(instructions);
   const allRegisteredKeys = Object.keys(registeredInstructions);
