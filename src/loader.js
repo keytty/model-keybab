@@ -2,7 +2,7 @@ function load(blueprintJSONPath) {
   const { 
     instructions, 
     // dissectGuide, 
-    group,
+    groups,
     // tests, 
   } = require(blueprintJSONPath);
   
@@ -10,7 +10,7 @@ function load(blueprintJSONPath) {
   const allRegisteredKeys = Object.keys(registeredInstructions);
 
   return {
-    group,
+    groups,
     registeredInstructions,
     allRegisteredKeys,
   }

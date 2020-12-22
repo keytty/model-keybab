@@ -10,7 +10,8 @@ function genActionFromKeys(registeredInstructions, groupDef) {
 
     if (x === 0 && y === 0) return [];
     //FYI: axes is hard coded here
-    const type = groupDef.axes.action;
+    const type = groupDef.filter(g => g.name == "axes")[0].action;
+
     return [{ type, x, y}];
   }
 

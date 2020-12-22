@@ -5,7 +5,7 @@ const { optimize, genFilterKeys } = require('./optimize.js');
 
 loader.load(__dirname + '/../recipes/keybab.json');
 
-const { registeredInstructions, group: groupDef } = loader.cached;
+const { registeredInstructions, groups: groupDef } = loader.cached;
 
 const actionFromKeys = genActionFromKeys(registeredInstructions, groupDef);
 
@@ -20,7 +20,6 @@ const filterKeys = genFilterKeys(registeredInstructions);
 //   ignoredKeyInTheEnd: 'q'
 // }
 function instruct(keys) {
-
   const {
     filtered,
     keysToIgnore,
