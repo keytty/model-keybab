@@ -4,7 +4,7 @@
 - outsource details of instructions to json file
 - DRY json construction from cue
 - reuse json from different languages/libraries allowing minimal but customizable logics that works best for its environment
-- tests input and output are builtin the json so that these can be used for any runtimes
+- tests input and output are builtin the the json so that these can be used for any runtimes
 
 ## Avoid being perfect
 - this model itself can be forked and modified in anyway possible to suit anyone's needs

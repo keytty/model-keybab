@@ -16,7 +16,7 @@ _if you are to just work on [../src](../src), just the produced [keybab.json](./
 _These are optional steps to make your debugging `source.cue` easier._
 
 ```
-$ make [develop] # to keep building `keybab.json` watching changes of `source.cue`
+$ make develop # (or just `make`) to keep building `keybab.json` watching changes of `source.cue`
 $ make preview # to see the result of `keybab.json` watching changes of itself
 ```
 
