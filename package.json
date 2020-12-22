@@ -9,6 +9,6 @@
   "author": "Heechul Ryu",
   "license": "MIT",
   "devDependencies": {
-    "eslint": "^7.9.0"
+    "eslint": "^7.16.0"
   }
 }
