@@ -1,11 +1,11 @@
 function load(blueprintJSONPath) {
-  const { 
-    instructions, 
-    // dissectGuide, 
+  const {
+    instructions,
+    // dissectGuide,
     groups,
-    // tests, 
+    // tests,
   } = require(blueprintJSONPath);
-  
+
   const registeredInstructions = loadInstructions(instructions);
   const allRegisteredKeys = Object.keys(registeredInstructions);
 
@@ -13,26 +13,26 @@ function load(blueprintJSONPath) {
     groups,
     registeredInstructions,
     allRegisteredKeys,
-  }
+  };
 }
 
 function loadInstructions(insts) {
   let result = {};
-  insts.map(inst => {
+  insts.map((inst) => {
     const { key } = inst;
 
     result[key] = inst;
-  })
+  });
 
   return result;
 }
 
 const loader = {
-  load: _load
-}
+  load: _load,
+};
 
 function _load(blueprintJSONPath) {
   loader.cached = load(blueprintJSONPath);
 }
 
-module.exports = { loader }
+module.exports = { loader };

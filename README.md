@@ -5,6 +5,7 @@ The code here (except [./recipes/keybab.json](./recipes/keybab.json)) are not in
 The details of instructions should be encoded in a configuration file like json. [Read here for more details.](./recipes)
 
 ## Status
+
 WIP
 
 ## Develop
@@ -15,7 +16,6 @@ WIP
 
 [DESIGN.md](./DESIGN.md)
 
-
 ## Roadmap
 
 - [ ] complete [recipes/source.cue](./recipes/source.cue)
@@ -23,4 +23,3 @@ WIP
 - [ ] tests code
 - [ ] provide a way to verify custom json
 - [ ] provide a guide to embed this repo as a single source of truth
-

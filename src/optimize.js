@@ -1,17 +1,21 @@
-const { tokenizeAxes, tokenToKeys } = require('./token.js');
+const { genTokenizeAxes, tokenToKeys } = require("./token.js");
 
-function optimize(groups) {
-  return groups.map(g => {
-    if (g.groupBy !== 'axes') return g;
+function genOptimize(registeredInstructions) {
+  const tokenizeAxes = genTokenizeAxes(registeredInstructions);
 
-    return optimizeAxesGroup(g);
-  });
+  return function (groups) {
+    return groups.map((g) => {
+      if (g.groupBy !== "axes") return g;
+
+      return optimizeAxesGroup(g, tokenizeAxes);
+    });
+  };
 }
 
-function optimizeAxesGroup(group) { 
+function optimizeAxesGroup(group, tokenizeAxes) {
   const tokenized = tokenizeAxes(group);
 
-  return { ...group, keys: tokenToKeys(tokenized) }
+  return { ...group, keys: tokenToKeys(tokenized) };
 }
 
 function genFilterKeys(registeredInstructions) {
@@ -20,7 +24,7 @@ function genFilterKeys(registeredInstructions) {
     let ignoredKeyInTheEnd = null;
 
     const filteredKeys = keys
-      .map(k => {
+      .map((k) => {
         const inst = registeredInstructions[k];
 
         // always reset
@@ -29,28 +33,29 @@ function genFilterKeys(registeredInstructions) {
 
         if (ignored) {
           ignoredKeyInTheEnd = k;
-          return { ignored: true, key: k }
+          return { ignored: true, key: k };
         }
 
         const { key, keysToIgnore, groupables } = inst;
         lastKeysToIgnore = keysToIgnore;
         return { key, ignored, groupables };
       })
-      .filter(o => !o.ignored)
-      .map(o => {
+      .filter((o) => !o.ignored)
+      .map((o) => {
         delete o.ignored;
         return o;
-      })
+      });
 
     return {
       filtered: filteredKeys,
       keysToIgnore: lastKeysToIgnore,
-      ignoredKeyInTheEnd
+      ignoredKeyInTheEnd,
     };
   }
   return filterKeys;
 }
 
 module.exports = {
-  optimize, genFilterKeys
-}
+  genOptimize,
+  genFilterKeys,
+};

@@ -1,7 +1,7 @@
 function commonGroupables(a, b) {
   if (!a || !b) return null;
   //TODO: implement
-  return ['axes'];
+  return ["axes"];
 }
 
 function shouldContinueBeingGrouped(a, b) {
@@ -15,10 +15,9 @@ function shouldContinueBeingGrouped(a, b) {
 
 function bundleGroup(keys, groupables) {
   if (groupables && groupables.length > 0) {
-    return {keys, groupBy: groupables[0]}
-  }
-  else {
-    return {keys}
+    return { keys, groupBy: groupables[0] };
+  } else {
+    return { keys };
   }
 }
 
@@ -38,8 +37,7 @@ function makeGroup(keys) {
     if (shouldContinueBeingGrouped(groupables, k.groupables)) {
       temp.push(k.key);
       groupables = commonGroupables(groupables, k.groupables);
-    }
-    else {
+    } else {
       grouped.push(bundleGroup(temp, groupables));
 
       // and prepare the temp right away
@@ -55,4 +53,4 @@ function makeGroup(keys) {
   return grouped;
 }
 
-module.exports = { makeGroup }
+module.exports = { makeGroup };

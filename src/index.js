@@ -1,15 +1,16 @@
-const { loader } = require('./loader.js');
-const { makeGroup } = require('./group.js');
-const { genActionFromKeys } = require('./action.js');
-const { optimize, genFilterKeys } = require('./optimize.js');
+const { loader } = require("./loader.js");
+const { makeGroup } = require("./group.js");
+const { genActionFromKeys } = require("./action.js");
+const { genOptimize, genFilterKeys } = require("./optimize.js");
 
-loader.load(__dirname + '/../recipes/keybab.json');
+loader.load(__dirname + "/../recipes/keybab.json");
 
 const { registeredInstructions, groups: groupDef } = loader.cached;
 
 const actionFromKeys = genActionFromKeys(registeredInstructions, groupDef);
 
 const filterKeys = genFilterKeys(registeredInstructions);
+const optimize = genOptimize(registeredInstructions);
 
 // instruct(
 //   ['c', 'w', 'j', 'c', 'j', 'j', '2', 'q']
@@ -20,19 +21,13 @@ const filterKeys = genFilterKeys(registeredInstructions);
 //   ignoredKeyInTheEnd: 'q'
 // }
 function instruct(keys) {
-  const {
-    filtered,
-    keysToIgnore,
-    ignoredKeyInTheEnd
-  } = filterKeys(keys);
+  const { filtered, keysToIgnore, ignoredKeyInTheEnd } = filterKeys(keys);
 
   const grouped = makeGroup(filtered);
 
   const optimized = optimize(grouped);
 
-  const finalKeys = optimized
-    .map(g => g.keys)
-    .flat();
+  const finalKeys = optimized.map((g) => g.keys).flat();
 
   const actions = actionFromKeys(optimized);
 
@@ -40,11 +35,11 @@ function instruct(keys) {
     keys: finalKeys,
     actions,
     keysToIgnore,
-    ignoredKeyInTheEnd
+    ignoredKeyInTheEnd,
   };
 }
 
 module.exports = {
   allRegisteredKeys: loader.cached.allRegisteredKeys,
-  instruct
-}
+  instruct,
+};
