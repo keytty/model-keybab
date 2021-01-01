@@ -3,7 +3,7 @@
 
 .PHONY: develop
 develop:
-	echo source.cue | entr -c make keybab.json
+	echo source.cue | entr -c bash -c 'make fmt && make keybab.json'
 
 .PHONY: render
 render:
@@ -20,7 +20,10 @@ keybab.json: source.cue
 preview:
 	less keybab.json
 
-
 .PHONY: follow
 follow:
 	echo source.cue | entr -c make render
+
+.PHONY: fmt
+fmt:
+	cue fmt

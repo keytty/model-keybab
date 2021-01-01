@@ -137,7 +137,7 @@ tests: [...#test]
 tests: [
 	{
 		inputKeys: ["e", "k"]
-		processedKeys: ["k"]
+		processedKeys: ["1", "k"]
 		actions: [{
 			type: "move"
 			x:    0
