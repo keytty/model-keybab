@@ -18,9 +18,9 @@ function optimizeAxesGroup(group, tokenizeAxes) {
   return { ...group, keys: tokenToKeys(tokenized) };
 }
 
-function genFilterKeys(registeredInstructions) {
+function genFilterKeys({ registeredInstructions, initialKeysToIgnore }) {
   function filterKeys(keys) {
-    let lastKeysToIgnore = [];
+    let lastKeysToIgnore = initialKeysToIgnore;
     let ignoredKeyInTheEnd = null;
 
     const filteredKeys = keys
@@ -37,7 +37,7 @@ function genFilterKeys(registeredInstructions) {
         }
 
         const { key, keysToIgnore, groupables } = inst;
-        lastKeysToIgnore = keysToIgnore;
+        lastKeysToIgnore = [...keysToIgnore];
         return { key, ignored, groupables };
       })
       .filter((o) => !o.ignored)

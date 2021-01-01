@@ -3,7 +3,8 @@ function load(blueprintJSONPath) {
     instructions,
     // dissectGuide,
     groups,
-    // tests,
+    initialKeysToIgnore,
+    tests,
   } = require(blueprintJSONPath);
 
   const registeredInstructions = loadInstructions(instructions);
@@ -13,6 +14,8 @@ function load(blueprintJSONPath) {
     groups,
     registeredInstructions,
     allRegisteredKeys,
+    initialKeysToIgnore,
+    tests,
   };
 }
 

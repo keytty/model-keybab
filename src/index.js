@@ -5,11 +5,18 @@ const { genOptimize, genFilterKeys } = require("./optimize.js");
 
 loader.load(__dirname + "/../recipes/keybab.json");
 
-const { registeredInstructions, groups: groupDef } = loader.cached;
+const {
+  registeredInstructions,
+  groups: groupDef,
+  initialKeysToIgnore,
+} = loader.cached;
 
 const actionFromKeys = genActionFromKeys(registeredInstructions, groupDef);
 
-const filterKeys = genFilterKeys(registeredInstructions);
+const filterKeys = genFilterKeys({
+  registeredInstructions,
+  initialKeysToIgnore,
+});
 const optimize = genOptimize(registeredInstructions);
 
 // instruct(
@@ -41,5 +48,6 @@ function instruct(keys) {
 
 module.exports = {
   allRegisteredKeys: loader.cached.allRegisteredKeys,
+  tests: loader.cached.tests,
   instruct,
 };
