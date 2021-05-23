@@ -6,7 +6,7 @@ The details of instructions should be encoded in a configuration file like json.
 
 ## Status
 
-WIP
+It's **archived** now and [keytty/keybab-agent](https://github.com/keytty/keybab-agent) will continue implementing the same goal hopefully in a better way.
 
 ## Develop
 
